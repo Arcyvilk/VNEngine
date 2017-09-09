@@ -2,26 +2,22 @@ var data="";
 var active=0;
 
 function startTheGame() {
-	document.getElementById("startbutton").style.display='none';
-	document.getElementById("textarea").style.display='block';
-	clearAnswers();		
 	getFile(b => {
-		data = JSON.parse(b);
+		data = JSON.parse(b);	
+		document.getElementById("startbutton").style.display='none';
+		document.getElementById("textarea").style.display='block';
 		loadBoard(0);
 	});
-}
-function findBoard(index) {
-	clearAnswers();
-	loadBoard(index);
 }
 function loadBoard(index) {
 	var board=data[index];
 	active=index;
-	
-	document.getElementById("narration").innerHTML = board.narration;
+
+	clearAnswers();
 	document.getElementById("content").style.backgroundImage=`url(img/${board.background}.png)`;
+	document.getElementById("narration").innerHTML = board.narration;
 	for (i in board.options)
-		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.options[i]}" onclick="findBoard(${board.options[i]})">${data[board.options[i]].choiceText}</div>`;	
+		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.options[i]}" onclick="loadBoard(${board.options[i]})">${data[board.options[i]].choiceText}</div>`;	
 	checkForDeath(board);
 }
 function checkForDeath(board) {
