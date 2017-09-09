@@ -1,0 +1,37 @@
+{
+	"0": {
+		"narration": "You are in a room lighted only by a candle. What do you do?",
+		"choiceText": "I light a candle",
+		"background": "start",
+		"options": [1,2,3],
+		"death": false
+	},
+	"1": {
+		"narration": "You went left and dropped off cliff. Sigh.",
+		"choiceText": "I go left",
+		"background": "ded",
+		"options": [],
+		"death": true
+	},
+	"2": {
+		"narration": "You decided to stay in place and got run over by a truck.",
+		"choiceText": "I stay in place",
+		"background": "ded",
+		"options": [],
+		"death": true
+	},
+	"3": {
+		"narration": "You went right and entered another room, this time dark. What do you do?",
+		"choiceText": "I go right",
+		"background": "right",
+		"options": [4,0],
+		"death": false
+	},
+	"4": {
+		"narration": "You didn't light a candle and got consumed by Darkness. You are ded.",
+		"choiceText": "I don't light a candle",
+		"background": "ded",
+		"options": [],
+		"death": true
+	}
+}

@@ -1,0 +1,61 @@
+body {
+	margin:0;
+	padding:0;	
+	font-family: "Lato", Georgia, serif;
+}
+#wrapper{
+	position:relative;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin:0;
+	padding:0;
+	height: 100vh;
+	width: 100vw;
+	background-color:#000;
+}
+#startbutton{
+	position:relative;
+	margin:0;
+	padding:20px;
+	font-family: "Macondo", Georgia, serif;
+	font-size:4em;
+	align-self:center;
+	color:#000;
+	border-radius: 40px;
+	background-color:#888;
+}
+#startbutton p{
+	margin:0;
+	padding:0;
+}
+#startbutton:hover{
+	color:#fff;
+}
+#content{
+	position:relative;
+	display:flex;
+	justify-content:center;
+	align-items:flex-end;
+	box-sizing:border-box;
+	width:960px;
+	height:600px;
+	background-color: #333;
+}
+#narration{
+	font-family:"Black Ops One", Georgia, serif;
+	font-size:1.2em;
+	color:#000;
+	text-shadow: 0 0 10px #bbb;
+	margin-bottom:10px;
+}
+.answer{
+	text-align:center;
+	margin-bottom:10px;
+	color:#fdc000;
+	transition: color 1s;
+	font-family:"Special Elite", Verdana, sans-serif;
+}
+.answer:hover{
+	color:#fff;
+}

@@ -8,40 +8,32 @@ function startTheGame() {
 		loadBoard(0);
 	});
 }
-function findBoard(id) {
-	var text=document.getElementById(id).innerHTML;
-	
+function findBoard(index) {
 	clearAnswers();
-	for (i in boards){
-		if (boards[i].choiceText == text)
-			loadBoard(i);
-	}
+	loadBoard(index);
 }
 function loadBoard(index) {
 	var board=boards[index];
-	
+		
 	document.getElementById("narration").innerHTML = board.narration;
-	document.getElementById("content").style.backgroundImage="url(img/"+board.background+".png)";
+	document.getElementById("content").style.backgroundImage=`url(img/${board.background}.png)`;
 	for (i in board.options)
-		document.getElementById("answer"+i).innerHTML = boards[board.options[i]].choiceText;
-	checkForDeath(index);
+		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.options[i]}" onclick="findBoard(${board.options[i]})">${boards[board.options[i]].choiceText}</div>`;
+	checkForDeath(board);
 }
-function checkForDeath(i) {
-	if (boards[i].death){
+function checkForDeath(board) {
+	if (board.death){
 		proposeRestart();
 		return;
 	}
-	document.getElementById("restart").innerHTML='';
+	document.getElementById("answers").removeChild("restart");
 }
 
 function clearAnswers() {
-	document.getElementById("answer0").innerHTML='';
-	document.getElementById("answer1").innerHTML='';
-	document.getElementById("answer2").innerHTML='';
-	document.getElementById("restart").innerHTML='';
+	document.getElementById("answers").innerHTML='';
 }
 function proposeRestart() {
-	document.getElementById("restart").innerHTML='Restart the game?';
+	document.getElementById("answers").innerHTML+=`<div id="restart" class="answer" onclick="startTheGame()">Restart the game?</div>`;
 }
 
 function getFile(callback) {
