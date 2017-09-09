@@ -1,36 +1,35 @@
 {
 	"0": {
-		"narration": "You are in a room lighted only by a candle. What do you do?",
-		"choiceText": "I light a candle",
-		"background": "start",
-		"options": [1,2,3],
+		"narration": "You are in a cozy looking bedroom. Please click around because it is a test if interactibles are working.",
+		"choiceText": "I go into bedroom",
+		"background": "bedroom",
+		"options": [1],
+		"interactibles": {
+			"0": {
+				"type": "item",
+				"description": "This is a PC monitor.",
+				"x1y1": [805,360],
+				"x2y2": [880,415]
+			},
+			"1": {
+				"type": "item",
+				"description": "This is lamp.",
+				"x1y1": [390,320],
+				"x2y2": [440,390]
+			},
+			"2": {
+				"type": "item",
+				"description": "This is a chair.",
+				"x1y1": [545,425],
+				"x2y2": [665,505]
+			}
+		},
 		"death": false
 	},
 	"1": {
-		"narration": "You went left and dropped off cliff. Sigh.",
-		"choiceText": "I go left",
-		"background": "ded",
-		"options": [],
-		"death": true
-	},
-	"2": {
-		"narration": "You decided to stay in place and got run over by a truck.",
-		"choiceText": "I stay in place",
-		"background": "ded",
-		"options": [],
-		"death": true
-	},
-	"3": {
-		"narration": "You went right and entered another room, this time dark. What do you do?",
-		"choiceText": "I go right",
-		"background": "right",
-		"options": [4,0],
-		"death": false
-	},
-	"4": {
-		"narration": "You didn't light a candle and got consumed by Darkness. You are ded.",
-		"choiceText": "I don't light a candle",
-		"background": "ded",
+		"narration": "Apparently there was a huge chasm right behind the door in which you fall and die. Gee, what were the chances?",
+		"choiceText": "Leave bedroom",
+		"background": "cliff",
 		"options": [],
 		"death": true
 	}

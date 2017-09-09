@@ -1,10 +1,12 @@
-var boards="";
+var data="";
+var active=0;
 
 function startTheGame() {
 	document.getElementById("startbutton").style.display='none';
+	document.getElementById("textarea").style.display='block';
 	clearAnswers();		
 	getFile(b => {
-		boards = JSON.parse(b);
+		data = JSON.parse(b);
 		loadBoard(0);
 	});
 }
@@ -13,12 +15,13 @@ function findBoard(index) {
 	loadBoard(index);
 }
 function loadBoard(index) {
-	var board=boards[index];
-		
+	var board=data[index];
+	active=index;
+	
 	document.getElementById("narration").innerHTML = board.narration;
 	document.getElementById("content").style.backgroundImage=`url(img/${board.background}.png)`;
 	for (i in board.options)
-		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.options[i]}" onclick="findBoard(${board.options[i]})">${boards[board.options[i]].choiceText}</div>`;
+		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.options[i]}" onclick="findBoard(${board.options[i]})">${data[board.options[i]].choiceText}</div>`;	
 	checkForDeath(board);
 }
 function checkForDeath(board) {
@@ -34,6 +37,21 @@ function clearAnswers() {
 }
 function proposeRestart() {
 	document.getElementById("answers").innerHTML+=`<div id="restart" class="answer" onclick="startTheGame()">Restart the game?</div>`;
+}
+
+function checkInteractives(event){
+	var x=event.clientX - document.getElementById("content").offsetLeft;
+	var y=event.clientY - document.getElementById("content").offsetTop;
+	var board=data[active].interactibles;
+	
+	if (!board)
+		return;
+	for (i in board){
+		if ((x >= board[i].x1y1[0] && x <= board[i].x2y2[0]) && (y >= board[i].x1y1[1] && y <= board[i].x2y2[1])){
+			alert(board[i].description);
+			return;
+		}
+	}
 }
 
 function getFile(callback) {
