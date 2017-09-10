@@ -15,10 +15,10 @@ function loadBoard(index) {
 	active=index;
 
 	clearAnswers();
-	document.getElementById("content").style.backgroundImage=`url("bg/${board.bg}.png")`;
+	document.getElementById("content").style.backgroundImage=`url(bg/${board.bg}.png)`;
 	document.getElementById("narration").innerHTML = board.narration;
-	for (i in board.options)
-		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.options[i]}" onclick="loadBoard(${board.options[i]})">${data[board.options[i]].choiceText}</div>`;	
+	for (i in board.branches)
+		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.branches[i]}" onclick="loadBoard(${board.branches[i]})">${data[board.branches[i]].branchText}</div>`;	
 	checkForDeath(board);
 }
 function checkForDeath(board) {

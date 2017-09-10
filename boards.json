@@ -1,9 +1,9 @@
 {
 	"0": {
 		"narration": "Welcome to the test chamber disguised as a cozy bedroom. Please click around to test if interactibles are working.",
-		"choiceText": "I go back to bedroom",
+		"branchText": "I go back to bedroom",
 		"bg": "bedroom",
-		"options": [1],
+		"branches": [1],
 		"interactibles": {
 			"0": {
 				"type": "item",
@@ -43,37 +43,37 @@
 	},
 	"1": {
 		"narration": "In the next room there is a man busy with vacuuming. This is your testing dummy to test if dialogues are working. Please talk to the dummy.",
-		"choiceText": "Leave bedroom",
+		"branchText": "Leave bedroom",
 		"bg": "vacuum",
-		"options": [2,3,4],
+		"branches": [2,3,4],
 		"death": false
 	},
 	"2": {
 		"narration": "Testing dummy peaks at you, unamused. 'Excuse me Sir, I do not recognize the command' he responds.",
-		"choiceText": "'Hello cutie =^.^='",
+		"branchText": "'Hello cutie =^.^='",
 		"bg": "vacuum",
-		"options": [0,4],
+		"branches": [0,4],
 		"death": false
 	},
 	"3": {
 		"narration": "Testing dummy seems completely unmoved by your brave declaration. 'In the current world, aren't we all slaves anyway?' he responds.",
-		"choiceText": "'Kneel peasant, from now on you shall be my slave'",
+		"branchText": "'Kneel peasant, from now on you shall be my slave'",
 		"bg": "vacuum",
-		"options": [5],
+		"branches": [5],
 		"death": false
 	},
 	"4": {
 		"narration": "Apparently there was a huge chasm right behind the door in which you fall and die. Gee, what were the chances?",
-		"choiceText": "I can't stand human interaction like a shutin I am and leave the room hastily",
+		"branchText": "I can't stand human interaction like a shutin I am and leave the room hastily",
 		"bg": "cliff",
-		"options": [],
+		"branches": [],
 		"death": true
 	},
 	"5": {
 		"narration": "Testing dummy turns out to be a hungry bear in disguise and devours you savagely.",
-		"choiceText": "I kick my new minion for being disobedient",
+		"branchText": "I kick my new minion for being disobedient",
 		"bg": "bear",
-		"options": [],
+		"branches": [],
 		"death": true
 	}
 }
