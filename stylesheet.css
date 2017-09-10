@@ -88,6 +88,7 @@ body {
 	align-self:flex-end;
 	margin-top:20px;
 	font-size:1.2em;
+	cursor:pointer;
 }
 #item-img{
 	display:flex;

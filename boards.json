@@ -1,9 +1,9 @@
 {
 	"0": {
-		"narration": "Welcome to the test chamber disguised as a cozy bedroom. Please click around to test if interactibles are working.",
+		"narration": "Welcome to the test chamber disguised as a cozy bedroom. Please click around to test if interactibles are working (but preferably clicking at doors first).",
 		"branchText": "I go back to bedroom",
 		"bg": "bedroom",
-		"branches": [1],
+		"branches": [],
 		"interactibles": {
 			"1": {
 				"type": "item",

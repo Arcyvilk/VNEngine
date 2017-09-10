@@ -1,5 +1,6 @@
 var data={"boards":{},"backpack":{}};
-var active=0;
+var globalActiveBoard=0;
+var globalItem=0;
 
 function startTheGame() {
 	getFile(b => {
@@ -12,7 +13,7 @@ function startTheGame() {
 }
 function loadBoard(index) {
 	var board=data.boards[index];
-	active=index;
+	globalActiveBoard=index;
 
 	clearAnswers();
 	document.getElementById("content").style.backgroundImage=`url(bg/${board.bg}.png)`;
@@ -39,15 +40,15 @@ function proposeRestart() {
 function checkInteractives(event){
 	var x=event.clientX - document.getElementById("content").offsetLeft;
 	var y=event.clientY - document.getElementById("content").offsetTop;
-	var board=data.boards[active].interactibles;
+	var board=data.boards[globalActiveBoard].interactibles;
 	
-	hideItemAreaIfVisible();
-	
+	hideItemAreaIfVisible();	
 	if (!board)
 		return;
 	for (i in board){
 		if ((x >= board[i].x1y1[0] && x <= board[i].x2y2[0]) && (y >= board[i].x1y1[1] && y <= board[i].x2y2[1])){
 			reactToInteractible(board[i]);
+			globalItem = i;
 			return;
 		}
 	}
@@ -66,6 +67,11 @@ function reactToInteractible(interactible){
 		}
 		loadBoard(interactible.branches);
 	}
+}
+function collectItem(){
+	data.backpack[globalItem] = data.boards[globalActiveBoard].interactibles[globalItem];
+	delete data.boards[globalActiveBoard].interactibles[globalItem];
+	alert(`You collected ${data.backpack[globalItem].description}.`);
 }
 function showItemInfo(interactible){
 	if (interactible.img)
