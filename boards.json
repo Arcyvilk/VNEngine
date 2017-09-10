@@ -2,26 +2,41 @@
 	"0": {
 		"narration": "Welcome to the test chamber disguised as a cozy bedroom. Please click around to test if interactibles are working.",
 		"choiceText": "I go back to bedroom",
-		"background": "bedroom",
+		"bg": "bedroom",
 		"options": [1],
 		"interactibles": {
 			"0": {
 				"type": "item",
-				"description": "This is a PC monitor.",
-				"x1y1": [805,360],
-				"x2y2": [880,415]
+				"img":"screen",
+				"x1y1": [797,355],
+				"x2y2": [870,404]
 			},
 			"1": {
 				"type": "item",
-				"description": "This is lamp.",
-				"x1y1": [390,320],
+				"description": "This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. ",
+				"img":"lamp",
+				"x1y1": [387,315],
 				"x2y2": [440,390]
 			},
 			"2": {
 				"type": "item",
 				"description": "This is a chair.",
+				"img":"chair",
 				"x1y1": [545,425],
 				"x2y2": [665,505]
+			},
+			"3": {
+				"type": "item",
+				"description": "This is a picture showing you and your favourite wife from the old times, when you weren't trapped in a test chamber disguised as a cozy bedroom yet.",
+				"img":"picture",
+				"x1y1": [790,260],
+				"x2y2": [918,350]
+			},
+			"4":{
+				"type": "item",
+				"description": "Some indescribable horror.",
+				"x1y1": [200,350],
+				"x2y2": [280,390]
 			}
 		},
 		"death": false
@@ -29,35 +44,35 @@
 	"1": {
 		"narration": "In the next room there is a man busy with vacuuming. This is your testing dummy to test if dialogues are working. Please talk to the dummy.",
 		"choiceText": "Leave bedroom",
-		"background": "vacuum",
+		"bg": "vacuum",
 		"options": [2,3,4],
 		"death": false
 	},
 	"2": {
 		"narration": "Testing dummy peaks at you, unamused. 'Excuse me Sir, I do not recognize the command' he responds.",
 		"choiceText": "'Hello cutie =^.^='",
-		"background": "vacuum",
+		"bg": "vacuum",
 		"options": [0,4],
 		"death": false
 	},
 	"3": {
 		"narration": "Testing dummy seems completely unmoved by your brave declaration. 'In the current world, aren't we all slaves anyway?' he responds.",
 		"choiceText": "'Kneel peasant, from now on you shall be my slave'",
-		"background": "vacuum",
+		"bg": "vacuum",
 		"options": [5],
 		"death": false
 	},
 	"4": {
 		"narration": "Apparently there was a huge chasm right behind the door in which you fall and die. Gee, what were the chances?",
 		"choiceText": "I can't stand human interaction like a shutin I am and leave the room hastily",
-		"background": "cliff",
+		"bg": "cliff",
 		"options": [],
 		"death": true
 	},
 	"5": {
 		"narration": "Testing dummy turns out to be a hungry bear in disguise and devours you savagely.",
 		"choiceText": "I kick my new minion for being disobedient",
-		"background": "bear",
+		"bg": "bear",
 		"options": [],
 		"death": true
 	}

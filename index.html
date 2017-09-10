@@ -9,9 +9,16 @@
 <body>
 
 <div id="wrapper">
-	<div id="content" onclick="checkInteractives(event)">
+	<div id="content" onclick="checkInteractives(event)" onmousemove="giveCoordinates(event)">
+		<div id="coordinates">0,0</div>
 		<div id="startbutton" onclick="startTheGame()">
 			<p>Start The Game</p>
+		</div>
+		<div id="itemarea">
+			<div id="item-img">
+				<img src="" alt="Picture unavailable." />
+			</div>
+			<div id="item-desc"></div>
 		</div>
 		<div id="textarea">
 			<div id="narration"></div>
