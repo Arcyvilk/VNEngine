@@ -1,9 +1,9 @@
-var data="";
+var data={"boards":{},"backpack":{}};
 var active=0;
 
 function startTheGame() {
 	getFile(b => {
-		data = JSON.parse(b);	
+		data.boards = JSON.parse(b);	
 		document.getElementById("startbutton").style.display='none';
 		document.getElementById("textarea").style.display='block';
 		document.getElementById("itemarea").style.display='flex';
@@ -11,14 +11,14 @@ function startTheGame() {
 	});
 }
 function loadBoard(index) {
-	var board=data[index];
+	var board=data.boards[index];
 	active=index;
 
 	clearAnswers();
 	document.getElementById("content").style.backgroundImage=`url(bg/${board.bg}.png)`;
 	document.getElementById("narration").innerHTML = board.narration;
 	for (i in board.branches)
-		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.branches[i]}" onclick="loadBoard(${board.branches[i]})">${data[board.branches[i]].branchText}</div>`;	
+		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.branches[i]}" onclick="loadBoard(${board.branches[i]})">${data.boards[board.branches[i]].branchText}</div>`;	
 	checkForDeath(board);
 }
 function checkForDeath(board) {
@@ -39,7 +39,7 @@ function proposeRestart() {
 function checkInteractives(event){
 	var x=event.clientX - document.getElementById("content").offsetLeft;
 	var y=event.clientY - document.getElementById("content").offsetTop;
-	var board=data[active].interactibles;
+	var board=data.boards[active].interactibles;
 	
 	hideItemAreaIfVisible();
 	
@@ -54,12 +54,25 @@ function checkInteractives(event){
 }
 function reactToInteractible(interactible){
 	if (interactible.type == "item"){ //show item description
-		if (interactible.img)
+		showItemInfo(interactible);
+		return;
+	}
+	if (interactible.type == "branch"){
+		if (interactible.hasOwnProperty("requires")){
+			if (!data.backpack.hasOwnProperty(interactible.requires)){
+				showItemInfo(interactible);
+				return;
+			}
+		}
+		loadBoard(interactible.branches);
+	}
+}
+function showItemInfo(interactible){
+	if (interactible.img)
 			document.getElementById("item-img").innerHTML = `<img src="img/${interactible.img}.png" alt="Picture unavailable."/>`;
 		if (interactible.description)
 			document.getElementById("item-desc").innerHTML = interactible.description;
 		document.getElementById("itemarea").style.visibility = "visible";
-	}
 }
 function hideItemAreaIfVisible(){
 	var el=document.getElementById("itemarea");

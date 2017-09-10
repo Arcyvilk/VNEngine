@@ -5,12 +5,6 @@
 		"bg": "bedroom",
 		"branches": [1],
 		"interactibles": {
-			"0": {
-				"type": "item",
-				"img":"screen",
-				"x1y1": [797,355],
-				"x2y2": [870,404]
-			},
 			"1": {
 				"type": "item",
 				"description": "This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. ",
@@ -32,11 +26,13 @@
 				"x1y1": [790,260],
 				"x2y2": [918,350]
 			},
-			"4":{
-				"type": "item",
-				"description": "Some indescribable horror.",
-				"x1y1": [200,350],
-				"x2y2": [280,390]
+			"4": {
+				"type": "branch",
+				"description": "These doors might look like they are open, but for the sake of science let's pretend they aren't and that you need to break them open with a chair.",
+				"requires":2,
+				"x1y1": [618,237],
+				"x2y2": [707,420],
+				"branches":1
 			}
 		},
 		"death": false

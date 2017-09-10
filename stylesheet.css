@@ -28,25 +28,27 @@ body {
 #startbutton{
 	position:relative;
 	padding:25px;
+	align-self:center;
 	font-family: "Macondo", Georgia, serif;
 	font-size:4em;
 	color:#222;
-	box-shadow: inset -5px -5px 15px 10px #111, inset 5px 5px 15px 10px #ddd, 0 0 7px 2px #111;
-	text-shadow: 1px 1px 0 #bbb;
 	background-color:#888;
-	align-self:center;
-}
-#startbutton p{
-	margin:0;
-	padding:0;
+	box-shadow: inset -5px -5px 15px 10px #111, inset 5px 5px 15px 10px #ddd, 0 0 7px 2px #111;
+	text-shadow: 1px 1px 0 #bbb, -1px -1px 0 #777;
+	transition: color 2s, text-shadow 2s;
 }
 #startbutton:hover{
-	color:#422;
+	color:#5E4800;
+	text-shadow: 1px 1px 0 #bbb, -1px -1px 0 #000;
 }
 #startbutton:active{
 	box-shadow: inset 5px 5px 15px 10px #111, inset -5px -5px 15px 10px #ddd, 0 0 10px 5px #111;
 	font-size:3.9em;
 	text-shadow: -1px -1px 0 #bbb;
+}
+#startbutton p{
+	margin:0;
+	padding:0;
 }
 #coordinates{
 	position:absolute;
