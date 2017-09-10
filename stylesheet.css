@@ -27,11 +27,12 @@ body {
 }
 #startbutton{
 	position:relative;
-	padding:20px;
+	padding:25px;
 	font-family: "Macondo", Georgia, serif;
 	font-size:4em;
-	color:#000;
-	border-radius: 40px;
+	color:#222;
+	box-shadow: inset -5px -5px 15px 10px #111, inset 5px 5px 15px 10px #ddd, 0 0 7px 2px #111;
+	text-shadow: 1px 1px 0 #bbb;
 	background-color:#888;
 	align-self:center;
 }
@@ -40,7 +41,12 @@ body {
 	padding:0;
 }
 #startbutton:hover{
-	color:#fff;
+	color:#422;
+}
+#startbutton:active{
+	box-shadow: inset 5px 5px 15px 10px #111, inset -5px -5px 15px 10px #ddd, 0 0 10px 5px #111;
+	font-size:3.9em;
+	text-shadow: -1px -1px 0 #bbb;
 }
 #coordinates{
 	position:absolute;
@@ -94,7 +100,7 @@ body {
 	text-align:center;
 	margin-bottom:10px;
 	color:#fdc000;
-	transition: color 1s;
+	transition: color 0.5s;
 }
 .answer:hover{
 	color:#fff;
