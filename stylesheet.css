@@ -69,13 +69,25 @@ body {
 	justify-content:center;
 	max-width:700px;
 	max-height:200px;
-	overflow:auto;
-	background-color:rgba(230,210,170,0.6);
+	background-color:rgba(230,210,170,0.8);
+}
+#item-text{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
 }
 #item-desc{
 	box-sizing:border-box;
 	text-shadow: 0 0 5px #fff;
+	overflow:auto;
 	color: #111;
+}
+#item-collect{
+	display:none;
+	color:red;
+	align-self:flex-end;
+	margin-top:20px;
+	font-size:1.2em;
 }
 #item-img{
 	display:flex;

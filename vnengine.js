@@ -69,10 +69,12 @@ function reactToInteractible(interactible){
 }
 function showItemInfo(interactible){
 	if (interactible.img)
-			document.getElementById("item-img").innerHTML = `<img src="img/${interactible.img}.png" alt="Picture unavailable."/>`;
-		if (interactible.description)
-			document.getElementById("item-desc").innerHTML = interactible.description;
-		document.getElementById("itemarea").style.visibility = "visible";
+		document.getElementById("item-img").innerHTML = `<img src="img/${interactible.img}.png" alt="Picture unavailable."/>`;
+	if (interactible.description)
+		document.getElementById("item-desc").innerHTML = interactible.description;
+	if (interactible.collectible)
+		document.getElementById("item-collect").style.display="block";
+	document.getElementById("itemarea").style.visibility = "visible";
 }
 function hideItemAreaIfVisible(){
 	var el=document.getElementById("itemarea");
@@ -84,6 +86,7 @@ function hideItemAreaIfVisible(){
 function clearItemArea(){
 	document.getElementById("item-img").innerHTML = "";
 	document.getElementById("item-desc").innerHTML = "";
+	document.getElementById("item-collect").style.display="none";
 }
 
 

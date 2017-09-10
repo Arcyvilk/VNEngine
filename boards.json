@@ -16,6 +16,7 @@
 				"type": "item",
 				"description": "This is a chair.",
 				"img":"chair",
+				"collectible":true,
 				"x1y1": [545,425],
 				"x2y2": [665,505]
 			},
