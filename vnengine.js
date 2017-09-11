@@ -17,7 +17,7 @@ function loadBoard(index) {
 	setUpBackground(board);
 	document.getElementById("narration").innerHTML = board.narration;
 	for (i in board.branches)
-		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.branches[i]}" onclick="loadBoard(${board.branches[i]})">${data.boards[board.branches[i]].branchText}</div>`;	
+		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.branches[i]}" onclick="loadBoard('${board.branches[i]}')">${data.boards[board.branches[i]].branchText}</div>`;	
 	checkForDeath(board);
 }
 function clearAnswers() {
@@ -136,7 +136,7 @@ function giveCoordinates(event){
 	document.getElementById("coordinates").innerHTML = `${x},${y}`;
 }
 function getFile(callback) {
-	var path = 'boards.json';
+	var path = 'game.json';
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("GET", path, false);
 	xmlhttp.send(null);

@@ -44,7 +44,7 @@
 		"bg": "vacuumanim",
 		"animation":{
 			"frams":8,
-			"speed":1,
+			"speed":0.5,
 			"loop":5
 		},
 		"branches": [2,3,4],
@@ -61,7 +61,7 @@
 		"narration": "Testing dummy seems completely unmoved by your brave declaration. 'In the current world, aren't we all slaves anyway?' he responds.",
 		"branchText": "'Kneel peasant, from now on you shall be my slave'",
 		"bg": "vacuum",
-		"branches": [5],
+		"branches": ["bear"],
 		"death": false
 	},
 	"4": {
@@ -71,7 +71,7 @@
 		"branches": [],
 		"death": true
 	},
-	"5": {
+	"bear": {
 		"narration": "Testing dummy turns out to be a hungry bear in disguise and devours you savagely.",
 		"branchText": "I kick my new minion for being disobedient",
 		"bg": "bear",
