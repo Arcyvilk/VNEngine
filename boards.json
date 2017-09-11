@@ -41,7 +41,12 @@
 	"1": {
 		"narration": "In the next room there is a man busy with vacuuming. This is your testing dummy to test if dialogues are working. Please talk to the dummy.",
 		"branchText": "Leave bedroom",
-		"bg": "vacuum",
+		"bg": "vacuumanim",
+		"animation":{
+			"frams":8,
+			"speed":1,
+			"loop":5
+		},
 		"branches": [2,3,4],
 		"death": false
 	},

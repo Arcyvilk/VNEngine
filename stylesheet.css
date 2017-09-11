@@ -1,7 +1,7 @@
 body {
 	margin:0;
 	padding:0;	
-	font-family:"Special Elite", "Lato", Verdana, sans-serif;
+	font-family:"Special Elite", "Lato", Georgia, sans-serif;
 }
 #wrapper{
 	position:relative;
@@ -81,6 +81,7 @@ body {
 	text-shadow: 0 0 5px #fff;
 	overflow:auto;
 	color: #111;
+	text-align:justify;
 }
 #item-collect{
 	display:none;

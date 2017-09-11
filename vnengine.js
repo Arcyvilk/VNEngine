@@ -1,6 +1,4 @@
-var data={"boards":{},"backpack":{}};
-var globalActiveBoard=0;
-var globalItem=0;
+var data={"boards":{},"backpack":{}, "globalActiveBoard":0, "globalitem":0, "animate":false};
 
 function startTheGame() {
 	getFile(b => {
@@ -13,14 +11,53 @@ function startTheGame() {
 }
 function loadBoard(index) {
 	var board=data.boards[index];
-	globalActiveBoard=index;
+	data.globalActiveBoard=index;
 
 	clearAnswers();
-	document.getElementById("content").style.backgroundImage=`url(bg/${board.bg}.png)`;
+	setUpBackground(board);
 	document.getElementById("narration").innerHTML = board.narration;
 	for (i in board.branches)
 		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.branches[i]}" onclick="loadBoard(${board.branches[i]})">${data.boards[board.branches[i]].branchText}</div>`;	
 	checkForDeath(board);
+}
+function clearAnswers() {
+	document.getElementById("answers").innerHTML='';
+}
+function setUpBackground(board){
+	data.animate=false;
+	document.getElementById("content").style.backgroundPositionY = '0px';
+	document.getElementById("content").style.backgroundImage=`url(bg/${board.bg}.jpg)`;
+	
+	if (board.hasOwnProperty("animation")){
+		var loop = 1;
+		if (board.animation.hasOwnProperty("loop"))
+			loop = board.animation.loop;
+		
+		data.animate = true;
+		animateBackground(1, [board.animation.speed, board.animation.frams, loop]);
+	}
+}
+function animateBackground(i, args){
+	if (data.animate){
+		var speed=args[0];
+		var frams=args[1];
+		var loop=args[2];
+		var pos=600*(frams-(i-1));
+		
+		document.title=`[${pos}]`;
+		document.getElementById("content").style.backgroundPositionY = pos+'px';
+		if (i < frams){
+			setTimeout(()=>{
+				i++;
+				return animateBackground(i, args);
+			}, speed*1000);
+		}
+		else{
+			setTimeout(()=> {
+				return animateBackground(loop, args);
+			}, speed*1000);
+		}
+	}
 }
 function checkForDeath(board) {
 	if (board.death){
@@ -29,18 +66,15 @@ function checkForDeath(board) {
 	}
 	document.getElementById("answers").removeChild("restart");
 }
-
-function clearAnswers() {
-	document.getElementById("answers").innerHTML='';
-}
 function proposeRestart() {
 	document.getElementById("answers").innerHTML+=`<div id="restart" class="answer" onclick="startTheGame()">Restart the game?</div>`;
 }
 
+
 function checkInteractives(event){
 	var x=event.clientX - document.getElementById("content").offsetLeft;
 	var y=event.clientY - document.getElementById("content").offsetTop;
-	var board=data.boards[globalActiveBoard].interactibles;
+	var board=data.boards[data.globalActiveBoard].interactibles;
 	
 	hideItemAreaIfVisible();	
 	if (!board)
@@ -48,7 +82,7 @@ function checkInteractives(event){
 	for (i in board){
 		if ((x >= board[i].x1y1[0] && x <= board[i].x2y2[0]) && (y >= board[i].x1y1[1] && y <= board[i].x2y2[1])){
 			reactToInteractible(board[i]);
-			globalItem = i;
+			data.globalitem = i;
 			return;
 		}
 	}
@@ -69,9 +103,9 @@ function reactToInteractible(interactible){
 	}
 }
 function collectItem(){
-	data.backpack[globalItem] = data.boards[globalActiveBoard].interactibles[globalItem];
-	delete data.boards[globalActiveBoard].interactibles[globalItem];
-	alert(`You collected ${data.backpack[globalItem].description}.`);
+	data.backpack[data.globalitem] = data.boards[data.globalActiveBoard].interactibles[data.globalitem];
+	delete data.boards[data.globalActiveBoard].interactibles[data.globalitem];
+	alert(`You collected ${data.backpack[data.globalitem].description}.`);
 }
 function showItemInfo(interactible){
 	if (interactible.img)
@@ -101,7 +135,6 @@ function giveCoordinates(event){
 	var y=event.clientY - document.getElementById("content").offsetTop;
 	document.getElementById("coordinates").innerHTML = `${x},${y}`;
 }
-
 function getFile(callback) {
 	var path = 'boards.json';
 	var xmlhttp = new XMLHttpRequest();
