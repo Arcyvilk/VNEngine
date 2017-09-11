@@ -1,6 +1,7 @@
 var data={"boards":{},"backpack":{}, "globalActiveBoard":0, "globalitem":0, "animate":false};
 
 function startTheGame() {
+	clearGame();
 	getFile(b => {
 		data.boards = JSON.parse(b);	
 		document.getElementById("startbutton").style.display='none';
@@ -8,6 +9,9 @@ function startTheGame() {
 		document.getElementById("itemarea").style.display='flex';
 		loadBoard(0);
 	});
+}
+function clearGame(){
+	data={"boards":{},"backpack":{}, "globalActiveBoard":0, "globalitem":0, "animate":false};
 }
 function loadBoard(index) {
 	var board=data.boards[index];

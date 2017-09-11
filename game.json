@@ -61,7 +61,7 @@
 		"narration": "Testing dummy seems completely unmoved by your brave declaration. 'In the current world, aren't we all slaves anyway?' he responds.",
 		"branchText": "'Kneel peasant, from now on you shall be my slave'",
 		"bg": "vacuum",
-		"branches": ["bear"],
+		"branches": [5],
 		"death": false
 	},
 	"4": {
@@ -71,7 +71,7 @@
 		"branches": [],
 		"death": true
 	},
-	"bear": {
+	"5": {
 		"narration": "Testing dummy turns out to be a hungry bear in disguise and devours you savagely.",
 		"branchText": "I kick my new minion for being disobedient",
 		"bg": "bear",
