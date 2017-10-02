@@ -146,15 +146,15 @@ function checkForItemPicture(interactible){
 	if (interactible.img){
 		var downloadedItemImage=new Image();		
 		
-		downloadedItemImage.onload = function(){
-			itemImg.style.backgroundImage = "none";
-			document.getElementById("item-img").src=this.src;	
-		};
-		downloadedItemImage.src=`game/img/${interactible.img}.png`;	
-		
 		itemImg.style.height="200px";
 		itemImg.style.width="200px";
 		itemImg.style.padding="10px";
+		
+		downloadedItemImage.onload = function(){
+			document.getElementById("item-img").src=this.src;
+			itemImg.style.backgroundImage = "none";
+		};
+		downloadedItemImage.src=`game/img/${interactible.img}.png`;	
 	}
 	else{
 		itemImg.style.height="0";
