@@ -62,7 +62,6 @@ body {
 }
 #itemarea {
 	position:absolute;
-	padding:10px;
 	display:none;
 	visibility:hidden;
 	align-self:center;
@@ -71,10 +70,19 @@ body {
 	max-height:200px;
 	background-color:rgba(230,210,170,0.8);
 }
+#item-img{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	box-sizing:border-box;
+	padding:10px;
+}
 #item-text{
+	margin:10px;
 	display:flex;
 	flex-direction:column;
-	justify-content:space-between;
+	justify-content:center;
+	max-width:500px;
 }
 #item-desc{
 	box-sizing:border-box;
@@ -90,15 +98,6 @@ body {
 	margin-top:20px;
 	font-size:1.2em;
 	cursor:pointer;
-}
-#item-img{
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	box-sizing:border-box;
-}
-#item-img img{
-	max-height:180px;
 }
 #textarea {
 	display:none;
