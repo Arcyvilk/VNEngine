@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-var data={"boards":{}, "backpack":["b1picture"], "items":{}, "animate":false};
+var data={"boards":{}, "backpack":[], "items":{}, "animate":false};
 
 document.onkeydown = checkKey;
 
@@ -23,7 +23,7 @@ function startTheGame() {
 
 
 function clearData(){
-	data={"boards":{},"backpack":["b1picture"], "items":{}, "animate":false};
+	data={"boards":{},"backpack":["b1meds"], "items":{}, "animate":false};
 }
 function clearGame(){
 	document.getElementById("startbutton").style.display="none";

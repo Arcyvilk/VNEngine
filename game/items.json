@@ -24,5 +24,11 @@
 		"description": "These doors might look like they are open, but for the sake of science let's pretend they aren't and that you need to break them open with a chair.",
 		"requires":"b1chair",
 		"branches":"1"
+	},
+	"b1meds": {
+		"type": "item",
+		"name": "schizophrenia medicine",
+		"description": "This is a picture showing you and your favourite wife from the old times, when you weren't trapped in a test chamber disguised as a cozy bedroom yet.",
+		"img":"meds"
 	}
 }
