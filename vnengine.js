@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-var data={"boards":{}, "backpack":[], "items":{}, "globalitem":0, "animate":false};
+var data={"boards":{}, "backpack":[], "items":{}, "animate":false};
 
 function startTheGame() {
 	clearData();
@@ -22,12 +22,12 @@ function startTheGame() {
 
 
 function clearData(){
-	data={"boards":{},"backpack":[], "items":{}, "globalitem":0, "animate":false};
+	data={"boards":{},"backpack":[], "items":{}, "animate":false};
 }
 function clearGame(){
 	document.getElementById("startbutton").style.display="none";
 	document.getElementById("textarea").style.display="block";
-	document.getElementById("itemarea").style.display="flex";
+	document.getElementsByClassName("itemarea")[0].style.display="flex";
 	document.getElementsByClassName("content")[0].style.backgroundColor="#000";
 }
 function clearAnswers() {
@@ -106,7 +106,7 @@ function checkInteractives(event){
 	for (let interactible in board){
 		if (x >= board[interactible].x1 && x <= board[interactible].x2 && y >= board[interactible].y1 && y <= board[interactible].y2){
 			reactToInteractible(data.items[interactible]);
-			data.globalitem = interactible;
+			document.getElementsByClassName("itemarea")[0].id=interactible;
 			return;
 		}
 	}
@@ -126,10 +126,11 @@ function reactToInteractible(interactible){
 }
 function collectItem(){
 	var activeBoard=document.getElementsByClassName("content")[0].id;
+	var activeItem=document.getElementsByClassName("itemarea")[0].id;
 	
-	data.backpack.push(data.globalitem);
-	delete data.boards[activeBoard].interactibles[data.globalitem];
-	alert(`You collected ${data.items[data.globalitem].name}.`);
+	data.backpack.push(activeItem);
+	delete data.boards[activeBoard].interactibles[activeItem];
+	alert(`You collected ${data.items[activeItem].name}.`);
 }
 function showItemInfo(interactible){
 	checkForItemPicture(interactible);
@@ -137,7 +138,7 @@ function showItemInfo(interactible){
 		document.getElementById("item-desc").innerHTML = interactible.description;
 	if (interactible.collectible)
 		document.getElementById("item-collect").style.display="block";
-	document.getElementById("itemarea").style.visibility = "visible";
+	document.getElementsByClassName("itemarea")[0].style.visibility = "visible";
 }
 function checkForItemPicture(interactible){
 	var itemImg=document.getElementById("item-img");
@@ -156,7 +157,7 @@ function checkForItemPicture(interactible){
 	}
 }
 function hideItemAreaIfVisible(){
-	var el=document.getElementById("itemarea");
+	var el=document.getElementsByClassName("itemarea")[0];
 	if (el.style.visibility != "hidden"){
 		el.style.visibility = "hidden";
 		clearItemArea();

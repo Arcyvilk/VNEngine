@@ -60,7 +60,7 @@ body {
 	background-color:rgba(0,0,0,0.3);
 	padding:5px;
 }
-#itemarea {
+.itemarea {
 	position:absolute;
 	display:none;
 	visibility:hidden;
