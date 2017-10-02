@@ -50,8 +50,9 @@ body {
 	margin:0;
 	padding:0;
 }
-#coordinates{
+.coordinates{
 	position:absolute;
+	visibility:hidden;
 	top:0;
 	left:0;
 	border:1px solid #fff;
@@ -103,7 +104,65 @@ body {
 	font-size:1.2em;
 	cursor:pointer;
 }
-#textarea {
+.inventoryarea{
+	position:absolute;
+	visibility:hidden;
+	align-self:center;
+	overflow:auto;
+	border:3px double #fff9d3;
+	box-sizing:border-box;
+	width:300px;
+	height:400px;
+	background-color:rgba(60,50,30,0.8);
+}
+#inv-title{
+	box-sizing:border-box;
+	margin:0 30px;
+	height:50px;
+	background: url('src/inv.png') 50% no-repeat;
+	border-bottom:1px solid #fff9d3;
+}
+#inv-list{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+#inv-list li{
+	display:flex;
+	flex-wrap:nowrap;
+	justify-content:space-between;
+	align-items:center;
+}
+#inv-list li:hover{
+	background-color:rgba(30,25,15,0.8);
+}
+#inv-list li .inv-pict{
+	display:inline-block;
+	margin-left:10px;
+	width:40px;
+	height:40px;
+	box-sizing:border-box;
+	background-size:contain;
+	background-position:center; 
+	background-repeat:no-repeat;
+}
+#inv-list li .inv-desc{
+	display:inline-block;
+	width:200px;
+	padding:5px 15px 5px;
+	text-align:justify;
+	text-transform:uppercase;
+	font-family: "Lato", Verdana, sans-serif;
+	color:#fff;
+	box-sizing:border-box;
+}
+#inv-list li .inv-numb{
+	display:inline-block;
+	width:50px;
+	height:50px;
+	box-sizing:border-box;
+}
+.textarea {
 	display:none;
 	width:960px;
 	background-color:rgba(0,0,0,0.6);

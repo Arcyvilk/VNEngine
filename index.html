@@ -10,20 +10,25 @@
 
 <div class="wrapper">
 	<div class="content" onclick="checkInteractives(event)" onmousemove="giveCoordinates(event)">
-		<div id="coordinates">0,0</div>
+		<div class="coordinates">0,0</div>
 		<div id="startbutton" onclick="startTheGame()" style="cursor:pointer;">
 			Start The Game
 		</div>
 		<div class="itemarea">
 			<div id="itemarea-img">
-				<img id="item-img" src="src/load.gif" alt="Picture unavailable." />
+				<img id="item-img" src="src/load.gif"/>
 			</div>
 			<div id="itemarea-text">
 				<div id="item-desc"></div>
 				<div id="item-collect" onclick="collectItem()">Collect?</div>
 			</div>
 		</div>
-		<div id="textarea">
+		<div class="inventoryarea">
+			<div id="inv-title"></div>
+			<ul id="inv-list">
+			</ul>
+		</div>
+		<div class="textarea">
 			<div id="narration"></div>
 			<div id="answers" style="cursor:pointer;"></div>
 		</div>

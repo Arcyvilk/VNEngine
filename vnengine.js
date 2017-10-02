@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
+var data={"boards":{}, "backpack":["b1picture"], "items":{}, "animate":false};
 
-var data={"boards":{}, "backpack":[], "items":{}, "animate":false};
+document.onkeydown = checkKey;
 
 function startTheGame() {
 	clearData();
@@ -22,11 +23,11 @@ function startTheGame() {
 
 
 function clearData(){
-	data={"boards":{},"backpack":[], "items":{}, "animate":false};
+	data={"boards":{},"backpack":["b1picture"], "items":{}, "animate":false};
 }
 function clearGame(){
 	document.getElementById("startbutton").style.display="none";
-	document.getElementById("textarea").style.display="block";
+	document.getElementsByClassName("textarea")[0].style.display="block";
 	document.getElementsByClassName("itemarea")[0].style.display="flex";
 	document.getElementsByClassName("content")[0].style.backgroundColor="#000";
 }
@@ -143,13 +144,13 @@ function checkForItemPicture(interactible){
 	var itemImg=document.getElementById("itemarea-img");
 	
 	if (interactible.img){
-		var img=new Image();		
+		var downloadedItemImage=new Image();		
 		
-		img.onload = function(){
+		downloadedItemImage.onload = function(){
 			itemImg.style.backgroundImage = "none";
-			document.getElementById("item-img").src=this.src;
+			document.getElementById("item-img").src=this.src;	
 		};
-		img.src=`game/img/${interactible.img}.png`;
+		downloadedItemImage.src=`game/img/${interactible.img}.png`;	
 		
 		itemImg.style.height="200px";
 		itemImg.style.width="200px";
@@ -170,15 +171,33 @@ function hideItemAreaIfVisible(){
 }
 function clearItemArea(){
 	document.getElementById("itemarea-img").style.background = "url(src/load.gif) 50% no-repeat";
+	document.getElementById("item-img").src="";
 	document.getElementById("item-desc").innerHTML = "";
 	document.getElementById("item-collect").style.display="none";
+}
+function openInventory(){
+	var el=document.getElementsByClassName("inventoryarea")[0];
+	var list=document.getElementById("inv-list");
+	var l=data.backpack.length;
+	
+	list.innerHTML="";
+	for (item of data.backpack){
+		var node=document.createElement("li");
+		node.innerHTML = `<div class="inv-pict" style="background-image:url(game/img/${data.items[item].img}.png);"></div>
+						<div class="inv-desc">${data.items[item].name}</div>
+						<div class="inv-numb"></div>`;
+		list.appendChild(node);
+	}
+	if (el.style.visibility != "visible")
+		el.style.visibility = "visible";
+	else el.style.visibility = "hidden";
 }
 
 
 function giveCoordinates(event){
 	var x=event.clientX - document.getElementsByClassName("content")[0].offsetLeft;
 	var y=event.clientY - document.getElementsByClassName("content")[0].offsetTop;
-	document.getElementById("coordinates").innerHTML = `${x},${y}`;
+	document.getElementsByClassName("coordinates")[0].innerHTML = `${x},${y}`;
 }
 function getFile(url, callback) {
 	var path = url;
@@ -186,4 +205,22 @@ function getFile(url, callback) {
 	xmlhttp.open("GET", path, false);
 	xmlhttp.send(null);
 	callback(xmlhttp.responseText);
+}
+function checkKey(e){
+	if (!document.getElementsByClassName("content")[0].id) //this blocks opening inventory in the pre-starting board
+		return;
+		
+	e = e || window.event;	
+	if (e.keyCode == '73') { //inv
+		openInventory();
+		return;
+	}
+	if (e.keyCode == '67') { //coord
+	var el=document.getElementsByClassName("coordinates")[0];
+		if (el.style.visibility != "visible")
+			el.style.visibility = "visible";
+		else el.style.visibility = "hidden";
+		
+		return;
+	}
 }
