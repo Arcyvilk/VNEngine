@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-var data={"boards":{}, "backpack":[], "items":{}, "globalActiveBoard":0, "globalitem":0, "animate":false};
+var data={"boards":{}, "backpack":[], "items":{}, "globalitem":0, "animate":false};
 
 function startTheGame() {
 	clearData();
@@ -22,7 +22,7 @@ function startTheGame() {
 
 
 function clearData(){
-	data={"boards":{},"backpack":[], "items":{}, "globalActiveBoard":0, "globalitem":0, "animate":false};
+	data={"boards":{},"backpack":[], "items":{}, "globalitem":0, "animate":false};
 }
 function clearGame(){
 	document.getElementById("startbutton").style.display="none";
@@ -37,7 +37,7 @@ function clearAnswers() {
 
 function loadBoard(index) {
 	var board=data.boards[index];
-	data.globalActiveBoard=index;
+	document.getElementsByClassName("content")[0].id=index;
 
 	clearAnswers();
 	setUpBackground(board);
@@ -97,7 +97,8 @@ function proposeRestart() {
 function checkInteractives(event){
 	var x=event.clientX - document.getElementsByClassName("content")[0].offsetLeft;
 	var y=event.clientY - document.getElementsByClassName("content")[0].offsetTop;
-	var board=data.boards[data.globalActiveBoard].interactibles;
+	var activeBoard=document.getElementsByClassName("content")[0].id;
+	var board=data.boards[activeBoard].interactibles;
 	
 	hideItemAreaIfVisible();
 	if (!board)
@@ -124,8 +125,10 @@ function reactToInteractible(interactible){
 	}
 }
 function collectItem(){
+	var activeBoard=document.getElementsByClassName("content")[0].id;
+	
 	data.backpack.push(data.globalitem);
-	delete data.boards[data.globalActiveBoard].interactibles[data.globalitem];
+	delete data.boards[activeBoard].interactibles[data.globalitem];
 	alert(`You collected ${data.items[data.globalitem].name}.`);
 }
 function showItemInfo(interactible){
