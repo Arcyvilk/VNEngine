@@ -7,8 +7,8 @@ function startTheGame() {
 	clearGame();
 	
 	try{
-		getFile("game.json", boards => {
-			getFile("items.json", items => {
+		getFile("game/game.json", boards => {
+			getFile("game/items.json", items => {
 				data.boards = JSON.parse(boards);
 				data.items = JSON.parse(items);	
 				loadBoard("start");
@@ -51,7 +51,7 @@ function loadBoard(index) {
 function setUpBackground(board){
 	data.animate=false;
 	document.getElementsByClassName("content")[0].style.backgroundPositionY = "0px";
-	document.getElementsByClassName("content")[0].style.backgroundImage=`url(bg/${board.bg}.jpg)`;
+	document.getElementsByClassName("content")[0].style.backgroundImage=`url(game/bg/${board.bg}.jpg)`;
 	
 	if (board.hasOwnProperty("animation")){
 		var loop = 1;
@@ -69,7 +69,6 @@ function animateBackground(i, args){
 		var loop=args[2];
 		var pos=600*(frams-(i-1));
 		
-		document.title=`[${pos}]`;
 		document.getElementsByClassName("content")[0].style.backgroundPositionY = pos+"px";
 		if (i < frams){
 			setTimeout(()=>{
@@ -144,7 +143,7 @@ function checkForItemPicture(interactible){
 	var itemImg=document.getElementById("item-img");
 	
 	if (interactible.img){
-		itemImg.innerHTML = `<img src="img/${interactible.img}.png" alt="Picture unavailable."/>`;
+		itemImg.innerHTML = `<img src="game/img/${interactible.img}.png" alt="Picture unavailable."/>`;
 		itemImg.style.height="200px";
 		itemImg.style.width="200px";
 		itemImg.style.padding="10px";
