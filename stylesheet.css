@@ -70,18 +70,19 @@ body {
 	border:6px double #000;
 	background-color:rgba(230,210,170,0.8);
 }
-#item-img{
+#itemarea-img{
 	position:relative;
+	padding:10px;
 	display:flex;
 	justify-content:center;
 	align-items:center;
 	box-sizing:border-box;
-	padding:10px;
+	background: url(loading.gif) 50% no-repeat;
 }
-#item-img img{
+#itemarea-img item-img{
 	max-width:100%;
 }
-#item-text{
+#itemarea-text{
 	margin:10px;
 	display:flex;
 	flex-direction:column;

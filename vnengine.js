@@ -140,16 +140,22 @@ function showItemInfo(interactible){
 	document.getElementsByClassName("itemarea")[0].style.visibility = "visible";
 }
 function checkForItemPicture(interactible){
-	var itemImg=document.getElementById("item-img");
+	var itemImg=document.getElementById("itemarea-img");
 	
 	if (interactible.img){
-		itemImg.innerHTML = `<img src="game/img/${interactible.img}.png" alt="Picture unavailable."/>`;
+		var img=new Image();		
+		
+		img.onload = function(){
+			itemImg.style.backgroundImage = "none";
+			document.getElementById("item-img").src=this.src;
+		};
+		img.src=`game/img/${interactible.img}.png`;
+		
 		itemImg.style.height="200px";
 		itemImg.style.width="200px";
 		itemImg.style.padding="10px";
 	}
 	else{
-		itemImg.innerHTML = "";
 		itemImg.style.height="0";
 		itemImg.style.width="0";
 		itemImg.style.padding="0";
@@ -163,7 +169,7 @@ function hideItemAreaIfVisible(){
 	}
 }
 function clearItemArea(){
-	document.getElementById("item-img").innerHTML = "<img src='src/load.gif' alt='Picture unavailable.'/>";
+	document.getElementById("itemarea-img").style.background = "url(src/load.gif) 50% no-repeat";
 	document.getElementById("item-desc").innerHTML = "";
 	document.getElementById("item-collect").style.display="none";
 }
