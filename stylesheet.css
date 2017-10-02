@@ -3,7 +3,7 @@ body {
 	padding:0;	
 	font-family:"Special Elite", "Lato", Georgia, sans-serif;
 }
-#wrapper{
+.wrapper{
 	position:relative;
 	display:flex;
 	justify-content:center;
@@ -14,7 +14,7 @@ body {
 	width: 100vw;
 	background-color:#000;
 }
-#content{
+.content{
 	position:relative;
 	display:flex;
 	justify-content:center;
@@ -65,17 +65,20 @@ body {
 	display:none;
 	visibility:hidden;
 	align-self:center;
-	justify-content:center;
 	max-width:700px;
 	max-height:200px;
 	background-color:rgba(230,210,170,0.8);
 }
 #item-img{
+	position:relative;
 	display:flex;
 	justify-content:center;
 	align-items:center;
 	box-sizing:border-box;
 	padding:10px;
+}
+#item-img img{
+	max-width:100%;
 }
 #item-text{
 	margin:10px;

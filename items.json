@@ -1,0 +1,28 @@
+{
+	"b1lamp": {
+		"type": "item",
+		"name": "lamp",
+		"description": "This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. ",
+		"img":"lamp"
+	},
+	"b1chair": {
+		"type": "item",
+		"name":"chair",
+		"description": "This is a chair.",
+		"img":"chair",
+		"collectible":true
+	},
+	"b1picture": {
+		"type": "item",
+		"name": "picture",
+		"description": "This is a picture showing you and your favourite wife from the old times, when you weren't trapped in a test chamber disguised as a cozy bedroom yet.",
+		"img":"picture"
+	},
+	"b1door": {
+		"type": "branch",
+		"name":"doors",
+		"description": "These doors might look like they are open, but for the sake of science let's pretend they aren't and that you need to break them open with a chair.",
+		"requires":"b1chair",
+		"branches":"1"
+	}
+}

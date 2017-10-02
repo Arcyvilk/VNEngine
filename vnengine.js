@@ -1,25 +1,34 @@
 /*jshint esversion: 6 */
 
-var data={"boards":{}, "backpack":{}, "items":{}, "globalActiveBoard":0, "globalitem":0, "animate":false};
+var data={"boards":{}, "backpack":[], "items":{}, "globalActiveBoard":0, "globalitem":0, "animate":false};
 
 function startTheGame() {
 	clearData();
 	clearGame();
 	
-	getFile("game.json", b => {
-		data.boards = JSON.parse(b);	
-		loadBoard(0);
-	});
+	try{
+		getFile("game.json", boards => {
+			getFile("items.json", items => {
+				data.boards = JSON.parse(boards);
+				data.items = JSON.parse(items);	
+				loadBoard("start");
+			});
+		});
+	}
+	catch(e){
+		//alert(`Failed to load the game files.\n${e}`);
+	}
 }
 
 
 function clearData(){
-	data={"boards":{},"backpack":{}, "items":{}, "globalActiveBoard":0, "globalitem":0, "animate":false};
+	data={"boards":{},"backpack":[], "items":{}, "globalActiveBoard":0, "globalitem":0, "animate":false};
 }
 function clearGame(){
 	document.getElementById("startbutton").style.display="none";
 	document.getElementById("textarea").style.display="block";
 	document.getElementById("itemarea").style.display="flex";
+	document.getElementsByClassName("content")[0].style.backgroundColor="#000";
 }
 function clearAnswers() {
 	document.getElementById("answers").innerHTML="";
@@ -41,8 +50,8 @@ function loadBoard(index) {
 }
 function setUpBackground(board){
 	data.animate=false;
-	document.getElementById("content").style.backgroundPositionY = "0px";
-	document.getElementById("content").style.backgroundImage=`url(bg/${board.bg}.jpg)`;
+	document.getElementsByClassName("content")[0].style.backgroundPositionY = "0px";
+	document.getElementsByClassName("content")[0].style.backgroundImage=`url(bg/${board.bg}.jpg)`;
 	
 	if (board.hasOwnProperty("animation")){
 		var loop = 1;
@@ -61,7 +70,7 @@ function animateBackground(i, args){
 		var pos=600*(frams-(i-1));
 		
 		document.title=`[${pos}]`;
-		document.getElementById("content").style.backgroundPositionY = pos+"px";
+		document.getElementsByClassName("content")[0].style.backgroundPositionY = pos+"px";
 		if (i < frams){
 			setTimeout(()=>{
 				i++;
@@ -86,17 +95,17 @@ function proposeRestart() {
 
 
 function checkInteractives(event){
-	var x=event.clientX - document.getElementById("content").offsetLeft;
-	var y=event.clientY - document.getElementById("content").offsetTop;
+	var x=event.clientX - document.getElementsByClassName("content")[0].offsetLeft;
+	var y=event.clientY - document.getElementsByClassName("content")[0].offsetTop;
 	var board=data.boards[data.globalActiveBoard].interactibles;
 	
 	hideItemAreaIfVisible();
 	if (!board)
 		return;
-	for (let i in board){
-		if ((x >= board[i].x1y1[0] && x <= board[i].x2y2[0]) && (y >= board[i].x1y1[1] && y <= board[i].x2y2[1])){
-			reactToInteractible(board[i]);
-			data.globalitem = i;
+	for (let interactible in board){
+		if (x >= board[interactible].x1 && x <= board[interactible].x2 && y >= board[interactible].y1 && y <= board[interactible].y2){
+			reactToInteractible(data.items[interactible]);
+			data.globalitem = interactible;
 			return;
 		}
 	}
@@ -107,19 +116,17 @@ function reactToInteractible(interactible){
 		return;
 	}
 	if (interactible.type == "branch"){
-		if (interactible.hasOwnProperty("requires")){
-			if (!data.backpack.hasOwnProperty(interactible.requires)){
-				showItemInfo(interactible);
-				return;
-			}
+		if (interactible.hasOwnProperty("requires") && data.backpack.indexOf(interactible.requires) == -1){
+			showItemInfo(interactible);
+			return;
 		}
 		loadBoard(interactible.branches);
 	}
 }
 function collectItem(){
-	data.backpack[data.globalitem] = data.boards[data.globalActiveBoard].interactibles[data.globalitem];
+	data.backpack.push(data.globalitem);
 	delete data.boards[data.globalActiveBoard].interactibles[data.globalitem];
-	alert(`You collected ${data.backpack[data.globalitem].description}.`);
+	alert(`You collected ${data.items[data.globalitem].name}.`);
 }
 function showItemInfo(interactible){
 	checkForItemPicture(interactible);
@@ -160,8 +167,8 @@ function clearItemArea(){
 
 
 function giveCoordinates(event){
-	var x=event.clientX - document.getElementById("content").offsetLeft;
-	var y=event.clientY - document.getElementById("content").offsetTop;
+	var x=event.clientX - document.getElementsByClassName("content")[0].offsetLeft;
+	var y=event.clientY - document.getElementsByClassName("content")[0].offsetTop;
 	document.getElementById("coordinates").innerHTML = `${x},${y}`;
 }
 function getFile(url, callback) {

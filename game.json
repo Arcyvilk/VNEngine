@@ -1,39 +1,33 @@
 {
-	"0": {
+	"start": {
 		"narration": "Welcome to the test chamber disguised as a cozy bedroom. Please click around to test if interactibles are working (but preferably clicking at doors first).",
 		"branchText": "I go back to bedroom",
 		"bg": "bedroom",
 		"branches": [],
 		"interactibles": {
-			"1": {
-				"type": "item",
-				"description": "This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. This is lamp. ",
-				"img":"lamp",
-				"x1y1": [387,315],
-				"x2y2": [440,390]
+			"b1lamp": {
+				"x1": 387,
+				"y1": 315,
+				"x2": 440,
+				"y2": 390
 			},
-			"2": {
-				"type": "item",
-				"description": "This is a chair.",
-				"img":"chair",
-				"collectible":true,
-				"x1y1": [545,425],
-				"x2y2": [665,505]
+			"b1chair": {
+				"x1": 545,
+				"y1": 425,
+				"x2": 665,
+				"y2": 505
 			},
-			"3": {
-				"type": "item",
-				"description": "This is a picture showing you and your favourite wife from the old times, when you weren't trapped in a test chamber disguised as a cozy bedroom yet.",
-				"img":"picture",
-				"x1y1": [790,260],
-				"x2y2": [918,350]
+			"b1picture": {
+				"x1": 790,
+				"y1": 260,
+				"x2": 918,
+				"y2": 350
 			},
-			"4": {
-				"type": "branch",
-				"description": "These doors might look like they are open, but for the sake of science let's pretend they aren't and that you need to break them open with a chair.",
-				"requires":2,
-				"x1y1": [618,237],
-				"x2y2": [707,420],
-				"branches":1
+			"b1door": {
+				"x1": 618,
+				"y1": 237,
+				"x2": 707,
+				"y2": 420
 			}
 		},
 		"death": false
