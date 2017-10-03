@@ -163,6 +163,7 @@ function collectItem(){
 	var activeItem=document.getElementsByClassName("itemarea")[0].id;
 	
 	data.backpack.push(activeItem);
+	data.backpack.sort();
 	delete data.boards[activeBoard].interactibles[activeItem];
 	alert(`You collected ${data.items[activeItem].name}.`);
 }
@@ -215,13 +216,19 @@ function openInventory(){
 	var el=document.getElementsByClassName("inventoryarea")[0];
 	var list=document.getElementById("inv-list");
 	var l=data.backpack.length;
+	var sorted={};
 	
 	list.innerHTML="";
-	for (item of data.backpack){
+	for (let item of data.backpack){
+		if (!sorted.hasOwnProperty(item))
+			sorted[item]=1;
+		else sorted[item]++;
+	}
+	for (let item in sorted){
 		var node=document.createElement("li");
 		node.innerHTML = `<div class="inv-pict" style="background-image:url(game/img/${data.items[item].img}.png);"></div>
 						<div class="inv-desc">${data.items[item].name}</div>
-						<div class="inv-numb"></div>`;
+						<div class="inv-numb">x${sorted[item]}</div>`;
 		list.appendChild(node);
 	}
 	if (el.style.visibility != "visible"){
