@@ -242,6 +242,17 @@ function getFile(url, callback) {
 	xmlhttp.send(null);
 	callback(xmlhttp.responseText);
 }
+
+//event listeners
+window.onload = function() {
+	var content = document.getElementsByClassName("content")[0];
+	content.addEventListener("click", checkInteractives, false);
+	var startbutton = document.getElementById("startbutton");
+	startbutton.addEventListener("click", startTheGame, false);
+	var itemcollect = document.getElementById("item-collect");
+	itemcollect.addEventListener("click", collectItem, false);
+}
+
 function checkKey(e){
 	if (!document.getElementsByClassName("content")[0].id) //this blocks opening inventory in the pre-starting board
 		return;

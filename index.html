@@ -4,14 +4,14 @@
 	<meta charset="utf-8">
 	<link href="stylesheet.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Macondo%7CSpecial+Elite%7CLora" rel="stylesheet"> 
-	<script src="vnengine.js" type="text/javascript"></script>	
 </head>
 <body>
 
+<script src="vnengine.js" type="text/javascript"></script>	
 <div class="wrapper">
-	<div class="content" onclick="checkInteractives(event)" onmousemove="giveCoordinates(event)">
+	<div class="content" onmousemove="giveCoordinates(event)">
 		<div class="coordinates">0,0</div>
-		<div id="startbutton" onclick="startTheGame();event.cancelBubble=true;" style="cursor:pointer;">
+		<div id="startbutton" onclick="event.cancelBubble=true;" style="cursor:pointer;">
 			Start The Game
 		</div>
 		<div class="itemarea">
@@ -20,15 +20,15 @@
 			</div>
 			<div id="itemarea-text">
 				<div id="item-desc"></div>
-				<div id="item-collect" onclick="collectItem()">Collect?</div>
+				<div id="item-collect" >Collect?</div>
 			</div>
 		</div>
-		<div class="inventoryarea" onclick="event.cancelBubble=true;">
+		<div class="inventoryarea" onclick="event.cancelBubble=true;" >
 			<div id="inv-title"></div>
 			<ul id="inv-list">
 			</ul>
 		</div>
-		<div class="textarea" onclick="event.cancelBubble=true;">
+		<div class="textarea" onclick="event.cancelBubble=true;" >
 			<div id="narration"></div>
 			<div id="answers" style="cursor:pointer;"></div>
 		</div>
