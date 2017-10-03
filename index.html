@@ -11,10 +11,10 @@
 <div class="wrapper">
 	<div class="content" onclick="checkInteractives(event)" onmousemove="giveCoordinates(event)">
 		<div class="coordinates">0,0</div>
-		<div id="startbutton" onclick="startTheGame()" style="cursor:pointer;">
+		<div id="startbutton" onclick="startTheGame();event.cancelBubble=true;" style="cursor:pointer;">
 			Start The Game
 		</div>
-		<div class="itemarea">
+		<div class="itemarea" onclick="event.cancelBubble=true;">
 			<div id="itemarea-img">
 				<img id="item-img" src="src/load.gif"/>
 			</div>
@@ -23,12 +23,12 @@
 				<div id="item-collect" onclick="collectItem()">Collect?</div>
 			</div>
 		</div>
-		<div class="inventoryarea">
+		<div class="inventoryarea" onclick="event.cancelBubble=true;">
 			<div id="inv-title"></div>
 			<ul id="inv-list">
 			</ul>
 		</div>
-		<div class="textarea">
+		<div class="textarea" onclick="event.cancelBubble=true;">
 			<div id="narration"></div>
 			<div id="answers" style="cursor:pointer;"></div>
 		</div>

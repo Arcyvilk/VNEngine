@@ -20,8 +20,6 @@ function startTheGame() {
 		//alert(`Failed to load the game files.\n${e}`);
 	}
 }
-
-
 function clearData(){
 	data={"boards":{},"backpack":["b1meds"], "items":{}, "animate":false};
 }
@@ -29,39 +27,76 @@ function clearGame(){
 	document.getElementById("startbutton").style.display="none";
 	document.getElementsByClassName("textarea")[0].style.display="block";
 	document.getElementsByClassName("itemarea")[0].style.display="flex";
-	document.getElementsByClassName("content")[0].style.backgroundColor="#000";
+	document.getElementsByClassName("content")[0].style.backgroundColor="transparent";
 }
 function clearAnswers() {
 	document.getElementById("answers").innerHTML="";
 }
 
 
-function loadBoard(index) {
-	var board=data.boards[index];
-	document.getElementsByClassName("content")[0].id=index;
-
-	clearAnswers();
-	setUpBackground(board);
-	document.getElementById("narration").innerHTML = board.narration;
-	
-	for (let i in board.branches){
-		document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.branches[i]}" onclick="loadBoard('${board.branches[i]}')">${data.boards[board.branches[i]].branchText}</div>`;	
-	}
-	checkForDeath(board);
+function fadeOut(callback){
+	var bg = document.getElementsByClassName("content")[0];
+	var opacity = 1;
+	var timer=setInterval( function(){
+		if (opacity <= 0.1){
+			callback();
+			clearInterval(timer);
+		}
+		bg.style.opacity = opacity;
+		opacity = opacity - 0.01;
+	},3);
 }
-function setUpBackground(board){
-	data.animate=false;
-	document.getElementsByClassName("content")[0].style.backgroundPositionY = "0px";
-	document.getElementsByClassName("content")[0].style.backgroundImage=`url(game/bg/${board.bg}.jpg)`;
+function fadeIn(callback) {
+	var bg = document.getElementsByClassName("content")[0];
+	var opacity = 0;
+	var timer=setInterval( function(){
+		if (opacity >= 1){
+			callback();
+			clearInterval(timer);
+		}
+		bg.style.opacity = opacity;
+		opacity = opacity + 0.01;
+	},3);
+}
+
+
+
+function loadBoard(index) {
+	var content=document.getElementsByClassName("content")[0];
+	var board=data.boards[index];
+	content.id=index;
 	
-	if (board.hasOwnProperty("animation")){
-		var loop = 1;
-		if (board.animation.hasOwnProperty("loop"))
-			loop = board.animation.loop;
-		
-		data.animate = true;
-		animateBackground(1, [board.animation.speed, board.animation.frams, loop]);
+	fadeOut(() => {
+		setUpBackground(board, () => {
+			clearAnswers();
+			document.getElementById("narration").innerHTML = board.narration;
+			for (let i in board.branches){
+				document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.branches[i]}" onclick="loadBoard('${board.branches[i]}')">${data.boards[board.branches[i]].branchText}</div>`;	
+			}
+			checkForDeath(board);
+			fadeIn(() => {});
+		});
+	});
+}
+function setUpBackground(board, callback){
+	var content=document.getElementsByClassName("content")[0];
+	var bg=new Image();
+	
+	bg.onload = function(){
+		data.animate=false;
+		content.style.backgroundPositionY = "0px";
+		content.style.backgroundImage=`url(${this.src})`;
+		if (board.hasOwnProperty("animation")){
+			var loop = 1;
+			if (board.animation.hasOwnProperty("loop"))
+				loop = board.animation.loop;
+			
+			data.animate = true;
+			animateBackground(1, [board.animation.speed, board.animation.frams, loop]);
+		}
+		callback();
 	}
+	bg.src=`game/bg/${board.bg}.jpg`;
 }
 function animateBackground(i, args){
 	if (data.animate){
@@ -87,7 +122,8 @@ function animateBackground(i, args){
 function checkForDeath(board) {
 	if (board.death)
 		return proposeRestart();
-	document.getElementById("answers").removeChild("restart");
+	if (document.getElementById("restart"))
+		document.getElementById("answers").removeChild("restart");
 }
 function proposeRestart() {
 	document.getElementById("answers").innerHTML+=`<div id="restart" class="answer" onclick="startTheGame()">Restart the game?</div>`;
@@ -130,6 +166,7 @@ function collectItem(){
 	
 	data.backpack.push(activeItem);
 	delete data.boards[activeBoard].interactibles[activeItem];
+	document.getElementsByClassName("itemarea")[0].style.visibility = "hidden";
 	alert(`You collected ${data.items[activeItem].name}.`);
 }
 function showItemInfo(interactible){
