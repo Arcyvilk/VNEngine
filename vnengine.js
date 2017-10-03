@@ -166,7 +166,6 @@ function collectItem(){
 	
 	data.backpack.push(activeItem);
 	delete data.boards[activeBoard].interactibles[activeItem];
-	document.getElementsByClassName("itemarea")[0].style.visibility = "hidden";
 	alert(`You collected ${data.items[activeItem].name}.`);
 }
 function showItemInfo(interactible){

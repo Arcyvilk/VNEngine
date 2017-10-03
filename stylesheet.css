@@ -113,10 +113,12 @@ div{
 	cursor:pointer;
 }
 .inventoryarea{
+	display:flex;
+	flex-direction:column;
+	flex-wrap:nowrap;
 	position:absolute;
 	visibility:hidden;
 	align-self:center;
-	overflow:auto;
 	border:3px double #fff9d3;
 	box-sizing:border-box;
 	width:300px;
@@ -126,13 +128,14 @@ div{
 #inv-title{
 	box-sizing:border-box;
 	margin:0 30px;
-	height:50px;
+	min-height:50px;
 	background: url('src/inv.png') 50% no-repeat;
 }
 #inv-list{
 	list-style-type:none;
 	padding:0;
 	margin:0;
+	overflow:auto;
 }
 #inv-list li{
 	display:flex;
