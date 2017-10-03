@@ -86,7 +86,6 @@ div{
 	justify-content:center;
 	align-items:center;
 	box-sizing:border-box;
-	background: url(load.gif) 50% no-repeat;
 }
 #itemarea-img item-img{
 	max-width:100%;

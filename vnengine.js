@@ -34,27 +34,25 @@ function clearAnswers() {
 }
 
 
-function fadeOut(callback){
-	var bg = document.getElementsByClassName("content")[0];
+function fadeOut(object, callback){
 	var opacity = 1;
 	var timer=setInterval( function(){
 		if (opacity <= 0.1){
 			callback();
 			clearInterval(timer);
 		}
-		bg.style.opacity = opacity;
+		object.style.opacity = opacity;
 		opacity = opacity - 0.01;
 	},3);
 }
-function fadeIn(callback) {
-	var bg = document.getElementsByClassName("content")[0];
+function fadeIn(object, callback) {
 	var opacity = 0;
 	var timer=setInterval( function(){
 		if (opacity >= 1){
 			callback();
 			clearInterval(timer);
 		}
-		bg.style.opacity = opacity;
+		object.style.opacity = opacity;
 		opacity = opacity + 0.01;
 	},3);
 }
@@ -66,15 +64,15 @@ function loadBoard(index) {
 	var board=data.boards[index];
 	content.id=index;
 	
-	fadeOut(() => {
+	fadeOut(content, () => {
 		setUpBackground(board, () => {
 			clearAnswers();
 			document.getElementById("narration").innerHTML = board.narration;
 			for (let i in board.branches){
 				document.getElementById("answers").innerHTML+=`<div class="answer" id="b${board.branches[i]}" onclick="loadBoard('${board.branches[i]}')">${data.boards[board.branches[i]].branchText}</div>`;	
-			}
+			};
 			checkForDeath(board);
-			fadeIn(() => {});
+			fadeIn(content, () => {});
 		});
 	});
 }
@@ -169,14 +167,16 @@ function collectItem(){
 	alert(`You collected ${data.items[activeItem].name}.`);
 }
 function showItemInfo(interactible){
-	checkForItemPicture(interactible);
 	if (interactible.description)
 		document.getElementById("item-desc").innerHTML = interactible.description;
 	if (interactible.collectible)
 		document.getElementById("item-collect").style.display="block";
-	document.getElementsByClassName("itemarea")[0].style.visibility = "visible";
+	checkForItemPicture(interactible, ()=>{
+		document.getElementsByClassName("itemarea")[0].style.visibility = "visible";
+		fadeIn(document.getElementsByClassName("itemarea")[0], ()=>{});
+	});
 }
-function checkForItemPicture(interactible){
+function checkForItemPicture(interactible,callback){
 	var itemImg=document.getElementById("itemarea-img");
 	
 	if (interactible.img){
@@ -188,7 +188,7 @@ function checkForItemPicture(interactible){
 		
 		downloadedItemImage.onload = function(){
 			document.getElementById("item-img").src=this.src;
-			itemImg.style.backgroundImage = "none";
+			callback();
 		};
 		downloadedItemImage.src=`game/img/${interactible.img}.png`;	
 	}
@@ -196,6 +196,7 @@ function checkForItemPicture(interactible){
 		itemImg.style.height="0";
 		itemImg.style.width="0";
 		itemImg.style.padding="0";
+		callback();
 	}
 }
 function hideItemAreaIfVisible(){
@@ -206,7 +207,6 @@ function hideItemAreaIfVisible(){
 	}
 }
 function clearItemArea(){
-	document.getElementById("itemarea-img").style.background = "url(src/load.gif) 50% no-repeat";
 	document.getElementById("item-img").src="";
 	document.getElementById("item-desc").innerHTML = "";
 	document.getElementById("item-collect").style.display="none";
@@ -224,8 +224,10 @@ function openInventory(){
 						<div class="inv-numb"></div>`;
 		list.appendChild(node);
 	}
-	if (el.style.visibility != "visible")
+	if (el.style.visibility != "visible"){
 		el.style.visibility = "visible";
+		fadeIn(el, () => { });
+	}
 	else el.style.visibility = "hidden";
 }
 
