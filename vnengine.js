@@ -162,6 +162,8 @@ function collectItem(){
 	var activeBoard=document.getElementsByClassName("content")[0].id;
 	var activeItem=document.getElementsByClassName("itemarea")[0].id;
 	
+	if (!data.items[activeItem].stackable && data.backpack.indexOf(activeItem) != -1)
+		return alert("You already have one item of this type. You cannot have more.");
 	data.backpack.push(activeItem);
 	data.backpack.sort();
 	delete data.boards[activeBoard].interactibles[activeItem];
