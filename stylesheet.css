@@ -76,7 +76,7 @@ div{
 	align-self:center;
 	max-width:700px;
 	max-height:200px;
-	border:6px double #000;
+	border:6px groove #754A1C;
 	background-color:rgba(230,210,170,0.8);
 }
 #itemarea-img{
@@ -112,17 +112,17 @@ div{
 	cursor:pointer;
 }
 .inventoryarea{
+	width:300px;
+	height:400px;
 	display:flex;
 	flex-direction:column;
 	flex-wrap:nowrap;
 	position:absolute;
-	visibility:hidden;
 	align-self:center;
-	border:3px double #fff9d3;
+	visibility:hidden;
 	box-sizing:border-box;
-	width:300px;
-	height:400px;
-	background-color:rgba(60,50,30,0.8);
+	border:4px groove #C9AD51;
+	background-color:rgba(30,30,20,0.9);
 }
 #inv-title{
 	box-sizing:border-box;
